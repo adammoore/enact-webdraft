@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Community Engagement — Enact Community Advisory Group, Pathfinders, and audience involvement.">
+    <meta name="theme-color" content="#1a5c3a">
+    <title>Community Engagement | Enact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a5c3a;
+            --color-accent: #d97706;
+            --color-dark: #1f2937;
+            --color-light: #f9fafb;
+            --color-border: #e5e7eb;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Source Serif Pro', serif;
+            --font-ui: 'Inter', sans-serif;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--color-dark); background-color: var(--color-light); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; font-weight: 800; margin-bottom: var(--space-md); }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2rem; color: var(--color-primary); margin-top: var(--space-xl); }
+        h3 { font-size: 1.4rem; color: var(--color-dark); }
+        p { margin-bottom: var(--space-md); max-width: 65ch; }
+        a { color: var(--color-primary); text-decoration: none; transition: all 0.3s ease; border-bottom: 2px solid transparent; }
+        a:hover { border-bottom-color: var(--color-accent); color: var(--color-accent); }
+
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-bottom: 1px solid var(--color-border); z-index: 1000; backdrop-filter: blur(10px); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: var(--space-md) var(--space-lg); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--color-primary); display: flex; align-items: center; gap: var(--space-sm); border-bottom: none; }
+        .logo:before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--color-accent); border-radius: 50%; }
+        nav { display: flex; gap: var(--space-lg); align-items: center; font-family: var(--font-ui); font-size: 0.9rem; font-weight: 500; flex-wrap: wrap; }
+        nav a { border: none; color: var(--color-dark); position: relative; }
+        nav a:after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
+        nav a:hover:after, nav a.active:after { transform: scaleX(1); transform-origin: left; }
+        nav a.active { color: var(--color-primary); }
+
+        .page-hero { margin-top: 80px; padding: var(--space-2xl) var(--space-lg) var(--space-xl); background: linear-gradient(135deg, rgba(26,92,58,0.05) 0%, rgba(217,119,6,0.03) 100%); border-bottom: 3px solid var(--color-primary); }
+        .page-hero .container { max-width: 1400px; margin: 0 auto; }
+        .breadcrumb { font-family: var(--font-ui); font-size: 0.85rem; color: #999; margin-bottom: var(--space-md); }
+        .breadcrumb a { color: var(--color-primary); border-bottom: none; }
+        .page-hero h1 { color: var(--color-primary); }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--space-lg); }
+        section { padding: var(--space-2xl) var(--space-lg); }
+        section:nth-child(even) { background: white; }
+        section:nth-child(odd) { background: var(--color-light); }
+        .section-inner { max-width: 1400px; margin: 0 auto; }
+
+        /* Advisory group member cards */
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-lg); margin-top: var(--space-lg); }
+        .member-card { background: white; padding: var(--space-lg); border-left: 4px solid var(--color-primary); box-shadow: var(--shadow-sm); transition: all 0.3s ease; }
+        .member-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-left-color: var(--color-accent); }
+        .member-initials { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-ui); font-weight: 600; font-size: 0.9rem; margin-bottom: var(--space-sm); }
+        .member-card h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+        .member-card .discipline { font-family: var(--font-ui); font-size: 0.8rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem; }
+        .member-card .inst { font-family: var(--font-ui); font-size: 0.78rem; color: #777; }
+
+        /* Pathfinder cards */
+        .pathfinder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); margin-top: var(--space-lg); }
+        .pathfinder-card {
+            background: white; padding: var(--space-lg);
+            border-top: 4px solid var(--color-accent);
+            box-shadow: var(--shadow-sm); transition: all 0.3s ease;
+        }
+        .pathfinder-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .pathfinder-tag { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(26,92,58,0.08); color: var(--color-primary); font-family: var(--font-ui); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--space-sm); }
+        .pathfinder-card h3 { font-size: 1.15rem; margin-bottom: var(--space-sm); }
+        .pathfinder-card p { font-size: 0.9rem; color: #555; margin-bottom: 0; }
+
+        /* Audience section */
+        .audience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg); margin-top: var(--space-lg); }
+        .audience-card {
+            background: white; padding: var(--space-lg);
+            border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+        .audience-card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+        .audience-icon { font-size: 2rem; margin-bottom: var(--space-sm); }
+        .audience-card h3 { font-size: 1.1rem; margin-bottom: var(--space-sm); color: var(--color-primary); }
+        .audience-card p { font-size: 0.9rem; color: #555; margin-bottom: 0; }
+
+        /* CTA */
+        .cta-section { background: linear-gradient(135deg, var(--color-primary) 0%, #0d3a21 100%); color: white; padding: var(--space-2xl) var(--space-lg); text-align: center; }
+        .cta-section h2 { color: white; margin-top: 0; }
+        .cta-section p { color: rgba(255,255,255,0.85); max-width: 60ch; margin: 0 auto var(--space-lg); }
+        .cta-button { display: inline-block; padding: var(--space-md) var(--space-xl); background: white; color: var(--color-primary); font-weight: 600; border: 2px solid white; border-radius: 4px; font-family: var(--font-ui); cursor: pointer; transition: all 0.3s ease; box-shadow: var(--shadow-md); margin: 0 var(--space-sm); }
+        .cta-button:hover { background: var(--color-accent); border-color: var(--color-accent); color: white; transform: translateY(-2px); }
+        .cta-button.secondary { background: transparent; color: white; border-color: rgba(255,255,255,0.5); }
+        .cta-button.secondary:hover { background: rgba(255,255,255,0.1); border-color: white; color: white; }
+
+        footer { background: var(--color-dark); color: white; padding: var(--space-xl) var(--space-lg); border-top: 3px solid var(--color-accent); }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-xl); }
+        .footer-section h4 { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--color-accent); margin-bottom: var(--space-md); }
+        .footer-section a { color: #ccc; display: block; margin-bottom: var(--space-sm); border-bottom: none; font-size: 0.9rem; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-lg); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md); font-size: 0.85rem; color: #999; max-width: 1400px; margin: 0 auto; }
+        .logos { display: flex; gap: var(--space-md); align-items: center; flex-wrap: wrap; }
+        .logo-badge { background: rgba(255,255,255,0.1); padding: 0.4rem var(--space-sm); border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav { gap: var(--space-sm); font-size: 0.8rem; }
+            .header-content { flex-wrap: wrap; gap: var(--space-sm); }
+            nav { width: 100%; }
+            section { padding: var(--space-xl) var(--space-md); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Enact</a>
+            <nav>
+                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
+                <a href="community-engagement.html" class="active">Community Engagement</a>
+                <a href="project-deliverables.html">Project Deliverables</a>
+                <a href="news.html">News</a>
+                <a href="events.html">Events</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">Home</a> / Community Engagement</div>
+            <h1>Community Engagement</h1>
+            <p>Enact is built on partnership and co-design. Our community structures ensure the project reflects real researcher needs and creates lasting capacity across the arts and humanities sector.</p>
+        </div>
+    </div>
+
+    <!-- Enact Community Advisory Group -->
+    <section id="advisory-group">
+        <div class="section-inner container">
+            <h2>Enact Community Advisory Group</h2>
+            <p>The Community Advisory Group (CAG) represents the diverse landscape of practice research disciplines and institutional contexts. Members provide strategic guidance, act as critical friends, and ensure community interests shape every aspect of the project.</p>
+            <p>The CAG meets quarterly and includes practitioners, research managers, librarians, and standards specialists from across the UK and internationally.</p>
+            <div class="member-grid">
+                <div class="member-card">
+                    <div class="member-initials">PR</div>
+                    <h3>Practice Research Representative</h3>
+                    <div class="discipline">Visual Arts</div>
+                    <div class="inst">UK Higher Education Institution</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-initials">PE</div>
+                    <h3>Practice Research Representative</h3>
+                    <div class="discipline">Performance &amp; Theatre</div>
+                    <div class="inst">UK Higher Education Institution</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-initials">MR</div>
+                    <h3>Practice Research Representative</h3>
+                    <div class="discipline">Music &amp; Sound</div>
+                    <div class="inst">UK Higher Education Institution</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-initials">DR</div>
+                    <h3>Practice Research Representative</h3>
+                    <div class="discipline">Dance &amp; Movement</div>
+                    <div class="inst">UK Higher Education Institution</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-initials">RM</div>
+                    <h3>Research Manager</h3>
+                    <div class="discipline">Research Policy</div>
+                    <div class="inst">UK University</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-initials">LI</div>
+                    <h3>Library &amp; Information Specialist</h3>
+                    <div class="discipline">Open Research</div>
+                    <div class="inst">UK University Library</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-initials">SB</div>
+                    <h3>Standards Body Representative</h3>
+                    <div class="discipline">Metadata &amp; Identifiers</div>
+                    <div class="inst">International Standards Organisation</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-initials">IC</div>
+                    <h3>International Collaborator</h3>
+                    <div class="discipline">Practice Research Infrastructure</div>
+                    <div class="inst">International Partner Institution</div>
+                </div>
+            </div>
+            <p style="margin-top: var(--space-lg); color: #666; font-style: italic;">CAG membership is expanding. If you have relevant expertise and would like to be considered, please <a href="about.html#get-in-touch">get in touch</a>.</p>
+        </div>
+    </section>
+
+    <!-- Enact Pathfinders -->
+    <section id="pathfinders">
+        <div class="section-inner container">
+            <h2>Enact Pathfinders</h2>
+            <p>Pathfinder projects are partner institutions and research groups working directly with the Enact team to co-design and test the platform. Pathfinders bring real-world use cases, contribute to metadata schema development, and help validate the infrastructure against diverse practice research needs.</p>
+            <p>Pathfinders participate in structured co-design workshops, provide feedback on prototype features, and contribute to the growing body of practice research documentation in the Enact system.</p>
+            <div class="pathfinder-grid">
+                <div class="pathfinder-card">
+                    <span class="pathfinder-tag">Performance</span>
+                    <h3>Pathfinder: Performance Research Group</h3>
+                    <p>Working with the Enact team to document multi-modal performance outputs including video, text, and spatial documentation. Testing metadata schemas for time-based and ephemeral practice.</p>
+                </div>
+                <div class="pathfinder-card">
+                    <span class="pathfinder-tag">Visual Arts</span>
+                    <h3>Pathfinder: Visual Arts Research Centre</h3>
+                    <p>Co-designing portfolio structures for exhibition-based and installation practice. Exploring relationships between material objects, documentation, and scholarly interpretation.</p>
+                </div>
+                <div class="pathfinder-card">
+                    <span class="pathfinder-tag">Music</span>
+                    <h3>Pathfinder: Music Practice Research</h3>
+                    <p>Testing the integration of audio files, scores, and contextual documentation. Contributing to the development of music-specific metadata standards within the open research ecosystem.</p>
+                </div>
+                <div class="pathfinder-card">
+                    <span class="pathfinder-tag">Design</span>
+                    <h3>Pathfinder: Design Research Lab</h3>
+                    <p>Exploring documentation of design process, prototypes, and material culture. Testing workflows for IP and licensing of creative outputs in a public repository context.</p>
+                </div>
+                <div class="pathfinder-card">
+                    <span class="pathfinder-tag">Dance</span>
+                    <h3>Pathfinder: Dance and Movement Studies</h3>
+                    <p>Working on body-based and embodied practice documentation. Contributing to conversations around consent, ethics, and representation in practice research archives.</p>
+                </div>
+                <div class="pathfinder-card">
+                    <span class="pathfinder-tag">Open Call</span>
+                    <h3>Become a Pathfinder</h3>
+                    <p>We are actively seeking new pathfinder partners. If your institution or research group works in practice research and wants to shape infrastructure, we want to hear from you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audiences -->
+    <section id="audiences">
+        <div class="section-inner container">
+            <h2>Who Is Enact For?</h2>
+            <p>Enact is designed to serve the full breadth of the practice research community — from individual practitioners to institutions, funders, and international collaborators.</p>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">🎭</div>
+                    <h3>Practice Researchers</h3>
+                    <p>Deposit, document, and share your practice research outputs in a system designed to understand what practice is and how it creates knowledge.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🏛️</div>
+                    <h3>Research Managers &amp; Administrators</h3>
+                    <p>Access tools and training to support practice researchers at your institution, and integrate Enact outputs with your existing research management systems.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">📚</div>
+                    <h3>Librarians &amp; Information Specialists</h3>
+                    <p>Contribute to metadata schema development and digital preservation strategies that respect the complexity of creative and practice-based outputs.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">📊</div>
+                    <h3>Funders &amp; Policy Makers</h3>
+                    <p>Gain visibility into the breadth and impact of practice research investment. Enact builds the infrastructure needed to evidence value across the sector.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🌐</div>
+                    <h3>International Partners</h3>
+                    <p>Connect with UK practice research communities and contribute to the development of globally interoperable standards for creative and practice-based scholarship.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🎓</div>
+                    <h3>Postgraduate Researchers</h3>
+                    <p>Access training, mentorship, and community networks that support the next generation of practice researchers navigating open research systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Get Involved</h2>
+            <p>Whether you're an individual researcher, an institution, or an organisation interested in practice research infrastructure — there's a place for you in the Enact community.</p>
+            <a href="about.html#express-interest" class="cta-button">Express Your Interest</a>
+            <a href="about.html#get-in-touch" class="cta-button secondary">Contact the Team</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
+                <a href="community-engagement.html">Community Engagement</a>
+                <a href="project-deliverables.html">Project Deliverables</a>
+                <a href="news.html">News</a>
+                <a href="events.html">Events</a>
+            </div>
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <a href="about.html#express-interest">Express Your Interest</a>
+                <a href="about.html#get-in-touch">Contact Us</a>
+                <a href="community-engagement.html#pathfinders">Become a Pathfinder</a>
+            </div>
+            <div class="footer-section">
+                <h4>Project</h4>
+                <a href="project-deliverables.html">Work Packages</a>
+                <a href="events.html">Upcoming Events</a>
+                <a href="news.html">Latest News</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Enact Project. All rights reserved.</p>
+            <div class="logos">
+                <span class="logo-badge">AHRC Funded</span>
+                <span class="logo-badge">University of Westminster</span>
+                <span class="logo-badge">AH/Z000769/1</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

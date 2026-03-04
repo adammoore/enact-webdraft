@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Enact team — Executive Group, Delivery Team, and Technology Partner.">
+    <meta name="theme-color" content="#1a5c3a">
+    <title>Team | Enact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a5c3a;
+            --color-accent: #d97706;
+            --color-dark: #1f2937;
+            --color-light: #f9fafb;
+            --color-border: #e5e7eb;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Source Serif Pro', serif;
+            --font-ui: 'Inter', sans-serif;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--color-dark); background-color: var(--color-light); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; font-weight: 800; margin-bottom: var(--space-md); }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2rem; color: var(--color-primary); margin-top: var(--space-xl); }
+        h3 { font-size: 1.4rem; color: var(--color-dark); }
+        p { margin-bottom: var(--space-md); max-width: 65ch; }
+        a { color: var(--color-primary); text-decoration: none; transition: all 0.3s ease; border-bottom: 2px solid transparent; }
+        a:hover { border-bottom-color: var(--color-accent); color: var(--color-accent); }
+
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-bottom: 1px solid var(--color-border); z-index: 1000; backdrop-filter: blur(10px); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: var(--space-md) var(--space-lg); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--color-primary); display: flex; align-items: center; gap: var(--space-sm); border-bottom: none; }
+        .logo:before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--color-accent); border-radius: 50%; }
+        nav { display: flex; gap: var(--space-lg); align-items: center; font-family: var(--font-ui); font-size: 0.9rem; font-weight: 500; flex-wrap: wrap; }
+        nav a { border: none; color: var(--color-dark); position: relative; }
+        nav a:after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
+        nav a:hover:after, nav a.active:after { transform: scaleX(1); transform-origin: left; }
+        nav a.active { color: var(--color-primary); }
+
+        .page-hero { margin-top: 80px; padding: var(--space-2xl) var(--space-lg) var(--space-xl); background: linear-gradient(135deg, rgba(26,92,58,0.05) 0%, rgba(217,119,6,0.03) 100%); border-bottom: 3px solid var(--color-primary); }
+        .page-hero .container { max-width: 1400px; margin: 0 auto; }
+        .breadcrumb { font-family: var(--font-ui); font-size: 0.85rem; color: #999; margin-bottom: var(--space-md); }
+        .breadcrumb a { color: var(--color-primary); border-bottom: none; }
+        .page-hero h1 { color: var(--color-primary); }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--space-lg); }
+        section { padding: var(--space-2xl) var(--space-lg); }
+        section:nth-child(even) { background: white; }
+        section:nth-child(odd) { background: var(--color-light); }
+        .section-inner { max-width: 1400px; margin: 0 auto; }
+
+        /* Team card grid */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-lg); margin-top: var(--space-lg); }
+        .team-card {
+            background: white; padding: var(--space-lg);
+            border-top: 4px solid var(--color-primary);
+            box-shadow: var(--shadow-sm); transition: all 0.3s ease;
+        }
+        .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-top-color: var(--color-accent); }
+        .team-avatar {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-family: var(--font-ui); font-weight: 700; font-size: 1.3rem;
+            margin-bottom: var(--space-md);
+        }
+        .team-card h3 { font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--color-dark); }
+        .team-card .role { font-family: var(--font-ui); font-size: 0.85rem; color: var(--color-primary); font-weight: 600; margin-bottom: var(--space-sm); }
+        .team-card .institution { font-family: var(--font-ui); font-size: 0.8rem; color: #777; margin-bottom: var(--space-sm); }
+        .team-card p { font-size: 0.9rem; color: #555; margin-bottom: 0; }
+
+        /* Partner block */
+        .partner-block {
+            background: white; border: 1px solid var(--color-border);
+            padding: var(--space-xl); display: flex; gap: var(--space-xl); align-items: flex-start;
+            box-shadow: var(--shadow-sm); margin-top: var(--space-lg);
+        }
+        .partner-logo {
+            width: 120px; height: 80px; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-family: var(--font-ui); font-weight: 700; font-size: 0.9rem; text-align: center;
+        }
+        .partner-block h3 { margin-bottom: var(--space-sm); }
+        .partner-block p { max-width: none; color: #555; }
+
+        footer { background: var(--color-dark); color: white; padding: var(--space-xl) var(--space-lg); border-top: 3px solid var(--color-accent); }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-xl); }
+        .footer-section h4 { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--color-accent); margin-bottom: var(--space-md); }
+        .footer-section a { color: #ccc; display: block; margin-bottom: var(--space-sm); border-bottom: none; font-size: 0.9rem; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-lg); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md); font-size: 0.85rem; color: #999; max-width: 1400px; margin: 0 auto; }
+        .logos { display: flex; gap: var(--space-md); align-items: center; flex-wrap: wrap; }
+        .logo-badge { background: rgba(255,255,255,0.1); padding: 0.4rem var(--space-sm); border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav { gap: var(--space-sm); font-size: 0.8rem; }
+            .header-content { flex-wrap: wrap; gap: var(--space-sm); }
+            nav { width: 100%; }
+            section { padding: var(--space-xl) var(--space-md); }
+            .partner-block { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Enact</a>
+            <nav>
+                <a href="about.html">About</a>
+                <a href="team.html" class="active">Team</a>
+                <a href="community-engagement.html">Community Engagement</a>
+                <a href="project-deliverables.html">Project Deliverables</a>
+                <a href="news.html">News</a>
+                <a href="events.html">Events</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">Home</a> / Team</div>
+            <h1>Our Team</h1>
+            <p>Enact brings together researchers, practitioners, and infrastructure specialists from across the UK arts and humanities sector.</p>
+        </div>
+    </div>
+
+    <!-- Enact Executive Group -->
+    <section id="executive-group">
+        <div class="section-inner container">
+            <h2>Enact Executive Group</h2>
+            <p>The Executive Group holds overall responsibility for the project's strategic direction, governance, and delivery against AHRC commitments.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">JE</div>
+                    <h3>Jenny Evans</h3>
+                    <div class="role">Principal Investigator</div>
+                    <div class="institution">University of Westminster</div>
+                    <p>Jenny leads the Enact project, bringing expertise in practice research policy and open research infrastructure.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">NW</div>
+                    <h3>Neal White</h3>
+                    <div class="role">Co-Investigator</div>
+                    <div class="institution">University of Westminster</div>
+                    <p>Neal contributes expertise in arts practice research, digital outputs, and experimental methodologies.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">HB</div>
+                    <h3>Helen Bailey</h3>
+                    <div class="role">Co-Investigator</div>
+                    <div class="institution">Queen Mary University of London</div>
+                    <p>Helen leads community engagement and co-design activities, bringing experience in participatory research methods.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">SM</div>
+                    <h3>Scott McLaughlin</h3>
+                    <div class="role">Co-Investigator</div>
+                    <div class="institution">University of Leeds</div>
+                    <p>Scott brings deep expertise in music practice research, metadata, and research documentation standards.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">CK</div>
+                    <h3>Claire Knowles</h3>
+                    <div class="role">Co-Investigator</div>
+                    <div class="institution">University of Leeds</div>
+                    <p>Claire leads on library and information infrastructure, open access, and digital preservation strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enact Delivery Team -->
+    <section id="delivery-team">
+        <div class="section-inner container">
+            <h2>Enact Delivery Team</h2>
+            <p>The Delivery Team manages the day-to-day operation of the project, coordinates community engagement, and supports the work packages.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #0d3a21, #1a5c3a);">PM</div>
+                    <h3>Project Manager</h3>
+                    <div class="role">Project Manager</div>
+                    <div class="institution">University of Westminster</div>
+                    <p>Coordinates project activities across partner institutions, manages timelines, and supports reporting to AHRC.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #0d3a21, #1a5c3a);">CE</div>
+                    <h3>Community Engagement Lead</h3>
+                    <div class="role">Community Engagement</div>
+                    <div class="institution">University of Westminster</div>
+                    <p>Facilitates relationships with pathfinder projects, co-design cohorts, and the Community Advisory Group.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #0d3a21, #1a5c3a);">RO</div>
+                    <h3>Research Officer</h3>
+                    <div class="role">Research &amp; Standards</div>
+                    <div class="institution">University of Leeds</div>
+                    <p>Supports metadata standards work, open research standards engagement, and skills training programme development.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #0d3a21, #1a5c3a);">DC</div>
+                    <h3>Digital Communications</h3>
+                    <div class="role">Communications &amp; Dissemination</div>
+                    <div class="institution">University of Westminster</div>
+                    <p>Manages the Enact website, newsletter, and social media presence, and coordinates outreach activities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enact Technology Partner -->
+    <section id="technology-partner">
+        <div class="section-inner container">
+            <h2>Enact Technology Partner</h2>
+            <p>Enact works with a specialist technology partner to develop and maintain the repository platform that underpins the project's infrastructure goals.</p>
+            <div class="partner-block">
+                <div class="partner-logo">Technology Partner</div>
+                <div>
+                    <h3>Repository Platform Development</h3>
+                    <p>Our technology partner brings expertise in open research infrastructure, metadata standards, and scalable repository architecture. Working closely with the Delivery Team and community, they are building the Enact platform on open standards and interoperable protocols.</p>
+                    <p>The platform integrates with existing persistent identifier systems (DOI, ORCID, RAiD), supports diverse media types central to practice research, and is designed for long-term preservation and discoverability.</p>
+                    <a href="project-deliverables.html#wp3">View WP3: Repository Build →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
+                <a href="community-engagement.html">Community Engagement</a>
+                <a href="project-deliverables.html">Project Deliverables</a>
+                <a href="news.html">News</a>
+                <a href="events.html">Events</a>
+            </div>
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <a href="about.html#express-interest">Express Your Interest</a>
+                <a href="about.html#get-in-touch">Contact Us</a>
+                <a href="community-engagement.html#pathfinders">Become a Pathfinder</a>
+            </div>
+            <div class="footer-section">
+                <h4>Project</h4>
+                <a href="project-deliverables.html">Work Packages</a>
+                <a href="events.html">Upcoming Events</a>
+                <a href="news.html">Latest News</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Enact Project. All rights reserved.</p>
+            <div class="logos">
+                <span class="logo-badge">AHRC Funded</span>
+                <span class="logo-badge">University of Westminster</span>
+                <span class="logo-badge">AH/Z000769/1</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

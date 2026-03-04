@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="News from the Enact project — updates, announcements, and insights from practice research infrastructure.">
+    <meta name="theme-color" content="#1a5c3a">
+    <title>News | Enact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a5c3a;
+            --color-accent: #d97706;
+            --color-dark: #1f2937;
+            --color-light: #f9fafb;
+            --color-border: #e5e7eb;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Source Serif Pro', serif;
+            --font-ui: 'Inter', sans-serif;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--color-dark); background-color: var(--color-light); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; font-weight: 800; margin-bottom: var(--space-md); }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2rem; color: var(--color-primary); margin-top: var(--space-xl); }
+        h3 { font-size: 1.25rem; color: var(--color-dark); }
+        p { margin-bottom: var(--space-md); max-width: 65ch; }
+        a { color: var(--color-primary); text-decoration: none; transition: all 0.3s ease; border-bottom: 2px solid transparent; }
+        a:hover { border-bottom-color: var(--color-accent); color: var(--color-accent); }
+
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-bottom: 1px solid var(--color-border); z-index: 1000; backdrop-filter: blur(10px); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: var(--space-md) var(--space-lg); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--color-primary); display: flex; align-items: center; gap: var(--space-sm); border-bottom: none; }
+        .logo:before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--color-accent); border-radius: 50%; }
+        nav { display: flex; gap: var(--space-lg); align-items: center; font-family: var(--font-ui); font-size: 0.9rem; font-weight: 500; flex-wrap: wrap; }
+        nav a { border: none; color: var(--color-dark); position: relative; }
+        nav a:after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
+        nav a:hover:after, nav a.active:after { transform: scaleX(1); transform-origin: left; }
+        nav a.active { color: var(--color-primary); }
+
+        .page-hero { margin-top: 80px; padding: var(--space-2xl) var(--space-lg) var(--space-xl); background: linear-gradient(135deg, rgba(26,92,58,0.05) 0%, rgba(217,119,6,0.03) 100%); border-bottom: 3px solid var(--color-primary); }
+        .page-hero .container { max-width: 1400px; margin: 0 auto; }
+        .breadcrumb { font-family: var(--font-ui); font-size: 0.85rem; color: #999; margin-bottom: var(--space-md); }
+        .breadcrumb a { color: var(--color-primary); border-bottom: none; }
+        .page-hero h1 { color: var(--color-primary); }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--space-lg); }
+        .news-section { padding: var(--space-2xl) var(--space-lg); background: var(--color-light); }
+
+        /* Filter bar */
+        .filter-bar { display: flex; gap: var(--space-sm); flex-wrap: wrap; margin-bottom: var(--space-xl); font-family: var(--font-ui); }
+        .filter-btn { padding: 0.4rem var(--space-sm); border: 1px solid var(--color-border); background: white; color: var(--color-dark); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+
+        /* Featured news item (large) */
+        .news-featured {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+            background: white; box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-xl); overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .news-featured:hover { box-shadow: var(--shadow-lg); }
+        .news-featured .featured-image {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #0d3a21 100%);
+            min-height: 320px; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .news-featured .featured-image:after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(217,119,6,0.3), transparent 60%);
+        }
+        .news-featured .featured-image .img-label {
+            font-family: var(--font-display); font-size: 3rem; color: rgba(255,255,255,0.15); font-weight: 800; z-index: 1;
+        }
+        .news-featured .featured-content { padding: var(--space-xl); display: flex; flex-direction: column; justify-content: center; }
+        .news-tag { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(26,92,58,0.1); color: var(--color-primary); font-family: var(--font-ui); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--space-sm); }
+        .news-featured h2 { margin-top: 0; font-size: 1.75rem; }
+        .news-featured .meta { font-family: var(--font-ui); font-size: 0.85rem; color: #999; margin-bottom: var(--space-md); }
+        .news-featured p { color: #555; margin-bottom: var(--space-lg); max-width: none; }
+        .read-more { font-family: var(--font-ui); font-size: 0.9rem; font-weight: 600; color: var(--color-primary); border-bottom: 2px solid var(--color-primary); }
+        .read-more:hover { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+
+        /* News grid — image-led, minimal text (per wireframe) */
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-lg); }
+        .news-card { background: white; overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.3s ease; }
+        .news-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+        .news-card-image {
+            width: 100%; aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.2); font-size: 3.5rem; font-family: var(--font-display);
+            font-weight: 800; position: relative; overflow: hidden;
+        }
+        .news-card-image:after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        /* Variant image backgrounds */
+        .news-card:nth-child(2) .news-card-image { background: linear-gradient(135deg, #0d3a21, var(--color-primary)); }
+        .news-card:nth-child(3) .news-card-image { background: linear-gradient(135deg, var(--color-accent), #b45309); }
+        .news-card:nth-child(4) .news-card-image { background: linear-gradient(135deg, #1e3a5f, #2563eb); }
+        .news-card:nth-child(5) .news-card-image { background: linear-gradient(135deg, #4a1d5c, #7c3aed); }
+        .news-card:nth-child(6) .news-card-image { background: linear-gradient(135deg, #1a5c3a, #d97706); }
+
+        .news-card-body { padding: var(--space-md); }
+        .news-card-body .tag { font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-primary); margin-bottom: 0.5rem; }
+        .news-card-body h3 { font-size: 1.05rem; margin-bottom: 0.5rem; line-height: 1.3; }
+        .news-card-body .date { font-family: var(--font-ui); font-size: 0.8rem; color: #999; }
+
+        /* Newsletter signup */
+        .newsletter-bar { background: var(--color-primary); color: white; padding: var(--space-xl) var(--space-lg); }
+        .newsletter-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: var(--space-xl); flex-wrap: wrap; }
+        .newsletter-inner h3 { color: white; margin-bottom: 0; flex-shrink: 0; }
+        .newsletter-form { display: flex; gap: var(--space-sm); flex: 1; min-width: 280px; }
+        .newsletter-form input { flex: 1; padding: 0.75rem var(--space-sm); border: none; font-family: var(--font-body); font-size: 1rem; }
+        .newsletter-form input:focus { outline: 2px solid var(--color-accent); }
+        .newsletter-form button { padding: 0.75rem var(--space-lg); background: var(--color-accent); color: white; border: none; font-family: var(--font-ui); font-weight: 600; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+        .newsletter-form button:hover { background: #b45309; }
+
+        footer { background: var(--color-dark); color: white; padding: var(--space-xl) var(--space-lg); border-top: 3px solid var(--color-accent); }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-xl); }
+        .footer-section h4 { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--color-accent); margin-bottom: var(--space-md); }
+        .footer-section a { color: #ccc; display: block; margin-bottom: var(--space-sm); border-bottom: none; font-size: 0.9rem; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-lg); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md); font-size: 0.85rem; color: #999; max-width: 1400px; margin: 0 auto; }
+        .logos { display: flex; gap: var(--space-md); align-items: center; flex-wrap: wrap; }
+        .logo-badge { background: rgba(255,255,255,0.1); padding: 0.4rem var(--space-sm); border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav { gap: var(--space-sm); font-size: 0.8rem; }
+            .header-content { flex-wrap: wrap; gap: var(--space-sm); }
+            nav { width: 100%; }
+            .news-featured { grid-template-columns: 1fr; }
+            .news-featured .featured-image { min-height: 200px; }
+            .news-section { padding: var(--space-xl) var(--space-md); }
+            .newsletter-inner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Enact</a>
+            <nav>
+                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
+                <a href="community-engagement.html">Community Engagement</a>
+                <a href="project-deliverables.html">Project Deliverables</a>
+                <a href="news.html" class="active">News</a>
+                <a href="events.html">Events</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">Home</a> / News</div>
+            <h1>News</h1>
+            <p>Project updates, announcements, community stories, and insights from the practice research infrastructure sector.</p>
+        </div>
+    </div>
+
+    <section class="news-section">
+        <div class="container">
+
+            <!-- Featured story -->
+            <a href="#" style="border-bottom: none; color: inherit;">
+                <div class="news-featured">
+                    <div class="featured-image"><span class="img-label">Enact</span></div>
+                    <div class="featured-content">
+                        <span class="news-tag">Project Update</span>
+                        <h2>Enact Launches — Building Infrastructure for Practice Research</h2>
+                        <div class="meta">July 2025</div>
+                        <p>The Enact project officially launches with an inaugural team meeting at Queen Mary University of London. Funded by the AHRC, the project begins its three-year mission to build open, interoperable infrastructure for practice-based research across the arts and humanities.</p>
+                        <span class="read-more">Read more →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Filter bar -->
+            <div class="filter-bar">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Project Updates</button>
+                <button class="filter-btn">Community</button>
+                <button class="filter-btn">Standards</button>
+                <button class="filter-btn">Research</button>
+            </div>
+
+            <!-- News grid — image + minimal text per wireframe spec -->
+            <div class="news-grid">
+                <a href="#" style="border-bottom: none; color: inherit;">
+                    <div class="news-card">
+                        <div class="news-card-image">01</div>
+                        <div class="news-card-body">
+                            <div class="tag">Community</div>
+                            <h3>Community Advisory Group Holds First Meeting</h3>
+                            <div class="date">August 2025</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" style="border-bottom: none; color: inherit;">
+                    <div class="news-card">
+                        <div class="news-card-image">02</div>
+                        <div class="news-card-body">
+                            <div class="tag">Standards</div>
+                            <h3>Enact Engages with DataCite Metadata Working Group</h3>
+                            <div class="date">September 2025</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" style="border-bottom: none; color: inherit;">
+                    <div class="news-card">
+                        <div class="news-card-image">03</div>
+                        <div class="news-card-body">
+                            <div class="tag">Research</div>
+                            <h3>First Pathfinder Projects Announced</h3>
+                            <div class="date">October 2025</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" style="border-bottom: none; color: inherit;">
+                    <div class="news-card">
+                        <div class="news-card-image">04</div>
+                        <div class="news-card-body">
+                            <div class="tag">Project Update</div>
+                            <h3>Repository Platform Prototype Development Begins</h3>
+                            <div class="date">November 2025</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" style="border-bottom: none; color: inherit;">
+                    <div class="news-card">
+                        <div class="news-card-image">05</div>
+                        <div class="news-card-body">
+                            <div class="tag">Community</div>
+                            <h3>Enact 'On the Road' — First Regional Events Confirmed</h3>
+                            <div class="date">December 2025</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" style="border-bottom: none; color: inherit;">
+                    <div class="news-card">
+                        <div class="news-card-image">06</div>
+                        <div class="news-card-body">
+                            <div class="tag">Standards</div>
+                            <h3>CRediT Extension Proposal for Practice Research Contributions</h3>
+                            <div class="date">January 2026</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="newsletter-bar">
+        <div class="newsletter-inner">
+            <h3>Stay Updated</h3>
+            <form class="newsletter-form" onsubmit="return false;">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
+                <a href="community-engagement.html">Community Engagement</a>
+                <a href="project-deliverables.html">Project Deliverables</a>
+                <a href="news.html">News</a>
+                <a href="events.html">Events</a>
+            </div>
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <a href="about.html#express-interest">Express Your Interest</a>
+                <a href="about.html#get-in-touch">Contact Us</a>
+                <a href="community-engagement.html#pathfinders">Become a Pathfinder</a>
+            </div>
+            <div class="footer-section">
+                <h4>Project</h4>
+                <a href="project-deliverables.html">Work Packages</a>
+                <a href="events.html">Upcoming Events</a>
+                <a href="news.html">Latest News</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Enact Project. All rights reserved.</p>
+            <div class="logos">
+                <span class="logo-badge">AHRC Funded</span>
+                <span class="logo-badge">University of Westminster</span>
+                <span class="logo-badge">AH/Z000769/1</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

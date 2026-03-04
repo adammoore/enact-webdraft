@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Deliverables — Enact work packages WP1 through WP5.">
+    <meta name="theme-color" content="#1a5c3a">
+    <title>Project Deliverables | Enact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a5c3a;
+            --color-accent: #d97706;
+            --color-dark: #1f2937;
+            --color-light: #f9fafb;
+            --color-border: #e5e7eb;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Source Serif Pro', serif;
+            --font-ui: 'Inter', sans-serif;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--color-dark); background-color: var(--color-light); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; font-weight: 800; margin-bottom: var(--space-md); }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2rem; color: var(--color-primary); margin-top: var(--space-xl); }
+        h3 { font-size: 1.4rem; color: var(--color-dark); }
+        p { margin-bottom: var(--space-md); max-width: 65ch; }
+        ul { margin-bottom: var(--space-md); padding-left: var(--space-lg); }
+        li { margin-bottom: 0.5rem; color: #555; }
+        a { color: var(--color-primary); text-decoration: none; transition: all 0.3s ease; border-bottom: 2px solid transparent; }
+        a:hover { border-bottom-color: var(--color-accent); color: var(--color-accent); }
+
+        header { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-bottom: 1px solid var(--color-border); z-index: 1000; backdrop-filter: blur(10px); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: var(--space-md) var(--space-lg); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--color-primary); display: flex; align-items: center; gap: var(--space-sm); border-bottom: none; }
+        .logo:before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--color-accent); border-radius: 50%; }
+        nav { display: flex; gap: var(--space-lg); align-items: center; font-family: var(--font-ui); font-size: 0.9rem; font-weight: 500; flex-wrap: wrap; }
+        nav a { border: none; color: var(--color-dark); position: relative; }
+        nav a:after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
+        nav a:hover:after, nav a.active:after { transform: scaleX(1); transform-origin: left; }
+        nav a.active { color: var(--color-primary); }
+
+        .page-hero { margin-top: 80px; padding: var(--space-2xl) var(--space-lg) var(--space-xl); background: linear-gradient(135deg, rgba(26,92,58,0.05) 0%, rgba(217,119,6,0.03) 100%); border-bottom: 3px solid var(--color-primary); }
+        .page-hero .container { max-width: 1400px; margin: 0 auto; }
+        .breadcrumb { font-family: var(--font-ui); font-size: 0.85rem; color: #999; margin-bottom: var(--space-md); }
+        .breadcrumb a { color: var(--color-primary); border-bottom: none; }
+        .page-hero h1 { color: var(--color-primary); }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--space-lg); }
+
+        /* WP quick-nav */
+        .wp-nav { display: flex; gap: var(--space-sm); flex-wrap: wrap; margin-top: var(--space-lg); font-family: var(--font-ui); }
+        .wp-nav a { padding: 0.5rem var(--space-sm); border: 1px solid var(--color-border); background: white; color: var(--color-dark); font-size: 0.85rem; font-weight: 500; border-bottom: 1px solid var(--color-border); transition: all 0.2s; }
+        .wp-nav a:hover { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+
+        /* WP sections */
+        .wp-section { padding: var(--space-2xl) var(--space-lg); }
+        .wp-section:nth-child(even) { background: white; }
+        .wp-section:nth-child(odd) { background: var(--color-light); }
+        .wp-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: var(--space-2xl); align-items: start; }
+
+        .wp-badge {
+            background: var(--color-primary); color: white;
+            padding: var(--space-xl) var(--space-lg); text-align: center; position: sticky; top: 100px;
+        }
+        .wp-badge .wp-number { font-family: var(--font-ui); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; margin-bottom: var(--space-sm); }
+        .wp-badge .wp-title-short { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; line-height: 1.2; }
+        .wp-badge .wp-lead { font-family: var(--font-ui); font-size: 0.8rem; margin-top: var(--space-sm); opacity: 0.8; }
+
+        .wp-content h2 { margin-top: 0; font-size: 1.8rem; }
+        .wp-content p { max-width: none; }
+
+        /* Deliverable list */
+        .deliverable-list { margin-top: var(--space-lg); }
+        .deliverable-item { display: flex; gap: var(--space-md); padding: var(--space-md) 0; border-bottom: 1px solid var(--color-border); align-items: flex-start; }
+        .deliverable-item:last-child { border-bottom: none; }
+        .deliverable-num { width: 36px; height: 36px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-ui); font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+        .deliverable-info h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+        .deliverable-info p { font-size: 0.9rem; color: #666; margin-bottom: 0; max-width: none; }
+        .status-tag { display: inline-block; padding: 0.2rem 0.6rem; font-family: var(--font-ui); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.5rem; }
+        .status-inprogress { background: rgba(26,92,58,0.1); color: var(--color-primary); }
+        .status-planned { background: rgba(217,119,6,0.1); color: var(--color-accent); }
+        .status-complete { background: rgba(34,197,94,0.1); color: #16a34a; }
+
+        footer { background: var(--color-dark); color: white; padding: var(--space-xl) var(--space-lg); border-top: 3px solid var(--color-accent); }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-xl); }
+        .footer-section h4 { font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--color-accent); margin-bottom: var(--space-md); }
+        .footer-section a { color: #ccc; display: block; margin-bottom: var(--space-sm); border-bottom: none; font-size: 0.9rem; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-lg); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md); font-size: 0.85rem; color: #999; max-width: 1400px; margin: 0 auto; }
+        .logos { display: flex; gap: var(--space-md); align-items: center; flex-wrap: wrap; }
+        .logo-badge { background: rgba(255,255,255,0.1); padding: 0.4rem var(--space-sm); border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+
+        @media (max-width: 900px) {
+            .wp-inner { grid-template-columns: 1fr; }
+            .wp-badge { position: static; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav { gap: var(--space-sm); font-size: 0.8rem; }
+            .header-content { flex-wrap: wrap; gap: var(--space-sm); }
+            nav { width: 100%; }
+            .wp-section { padding: var(--space-xl) var(--space-md); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Enact</a>
+            <nav>
+                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
+                <a href="community-engagement.html">Community Engagement</a>
+                <a href="project-deliverables.html" class="active">Project Deliverables</a>
+                <a href="news.html">News</a>
+                <a href="events.html">Events</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">Home</a> / Project Deliverables</div>
+            <h1>Project Deliverables</h1>
+            <p>Enact is structured around five interconnected work packages, each addressing critical dimensions of practice research infrastructure. Together they build a lasting foundation for the field.</p>
+            <div class="wp-nav">
+                <a href="#wp1">WP1: Set-up &amp; Management</a>
+                <a href="#wp2">WP2: Community Leadership</a>
+                <a href="#wp3">WP3: Repository Build</a>
+                <a href="#wp4">WP4: Metadata &amp; Standards</a>
+                <a href="#wp5">WP5: Skills &amp; Training</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- WP1 -->
+    <section class="wp-section" id="wp1">
+        <div class="wp-inner">
+            <div class="wp-badge">
+                <div class="wp-number">Work Package 1</div>
+                <div class="wp-title-short">Project Set-up &amp; Management</div>
+                <div class="wp-lead">Led by: University of Westminster</div>
+            </div>
+            <div class="wp-content">
+                <h2>WP1: Project Set-up &amp; Management</h2>
+                <p>WP1 establishes the governance, administrative infrastructure, and project management systems that underpin the entire Enact initiative. It ensures effective coordination across all partner institutions and maintains accountability to AHRC throughout the project lifetime.</p>
+                <p>This work package is ongoing throughout the project, providing the operational backbone that enables the substantive research and community work in WP2–WP5 to proceed effectively.</p>
+                <h3>Key Activities</h3>
+                <ul>
+                    <li>Establishing the Project Board and governance structures</li>
+                    <li>Setting up financial management and reporting systems across partner institutions</li>
+                    <li>Developing and maintaining the project risk register</li>
+                    <li>Coordinating regular partner meetings and reporting cycles</li>
+                    <li>Managing AHRC reporting requirements and milestones</li>
+                    <li>Overseeing the project website and communications infrastructure</li>
+                </ul>
+                <div class="deliverable-list">
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D1</div>
+                        <div class="deliverable-info">
+                            <h4>Project Inception Report</h4>
+                            <p>Comprehensive documentation of project governance, management structures, and initial risk assessment.</p>
+                            <span class="status-tag status-complete">Complete</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D2</div>
+                        <div class="deliverable-info">
+                            <h4>Data Management Plan</h4>
+                            <p>AHRC-compliant data management plan covering research data, community outputs, and project records.</p>
+                            <span class="status-tag status-complete">Complete</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D3</div>
+                        <div class="deliverable-info">
+                            <h4>Annual Progress Reports</h4>
+                            <p>Formal reporting to AHRC at agreed project milestones throughout the 3-year project period.</p>
+                            <span class="status-tag status-inprogress">In Progress</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WP2 -->
+    <section class="wp-section" id="wp2">
+        <div class="wp-inner">
+            <div class="wp-badge" style="background: #0d4a2e;">
+                <div class="wp-number">Work Package 2</div>
+                <div class="wp-title-short">Community Leadership &amp; Engagement</div>
+                <div class="wp-lead">Led by: QMUL &amp; University of Westminster</div>
+            </div>
+            <div class="wp-content">
+                <h2>WP2: Community Leadership &amp; Engagement</h2>
+                <p>WP2 is the heart of Enact's co-design approach. Through structured engagement with the practice research community, it gathers the knowledge, priorities, and use cases needed to build infrastructure that actually serves researchers' needs.</p>
+                <p>This work package operates in close partnership with the Community Advisory Group and Pathfinder projects, and feeds directly into the technical and standards work of WP3 and WP4.</p>
+                <h3>Key Activities</h3>
+                <ul>
+                    <li>Establishing and convening the Community Advisory Group (CAG)</li>
+                    <li>Recruiting and supporting Pathfinder projects across practice research disciplines</li>
+                    <li>Co-design workshops with diverse practice research communities</li>
+                    <li>Community needs assessment and requirements gathering</li>
+                    <li>Producing discipline-specific case studies and use cases</li>
+                    <li>Regional engagement through Enact 'on the road' events</li>
+                    <li>Developing inclusive engagement frameworks for underrepresented practice areas</li>
+                </ul>
+                <div class="deliverable-list">
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D4</div>
+                        <div class="deliverable-info">
+                            <h4>Community Advisory Group Established</h4>
+                            <p>CAG with members from diverse practice research disciplines, institutions, and career stages.</p>
+                            <span class="status-tag status-complete">Complete</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D5</div>
+                        <div class="deliverable-info">
+                            <h4>Pathfinder Cohort Recruited</h4>
+                            <p>Six or more pathfinder projects representing the range of practice research disciplines and institution types.</p>
+                            <span class="status-tag status-inprogress">In Progress</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D6</div>
+                        <div class="deliverable-info">
+                            <h4>Community Needs Report</h4>
+                            <p>Published synthesis of community requirements, priorities, and use cases for practice research infrastructure.</p>
+                            <span class="status-tag status-planned">Planned</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WP3 -->
+    <section class="wp-section" id="wp3">
+        <div class="wp-inner">
+            <div class="wp-badge">
+                <div class="wp-number">Work Package 3</div>
+                <div class="wp-title-short">Repository Build</div>
+                <div class="wp-lead">Led by: Technology Partner</div>
+            </div>
+            <div class="wp-content">
+                <h2>WP3: Repository Build</h2>
+                <p>WP3 develops the core technical infrastructure of the Enact platform: a sophisticated, interoperable repository capable of capturing the full complexity of practice research outputs, from single digital objects to complex multi-modal portfolios.</p>
+                <p>The repository is built on the Cayuse platform and extended to meet the specific needs of practice research, with three distinct functional layers addressing dissemination, discovery, and long-term preservation.</p>
+                <h3>Three Repository Layers</h3>
+                <ul>
+                    <li><strong>Dissemination layer:</strong> Public-facing interface for browsing, searching, and engaging with practice research outputs</li>
+                    <li><strong>Functionality layer:</strong> Deposit workflows, metadata editing, rights management, and collaborative features</li>
+                    <li><strong>Preservation layer:</strong> Integration with digital preservation systems, including archival formats and fixity checking</li>
+                </ul>
+                <h3>Key Technical Features</h3>
+                <ul>
+                    <li>Support for diverse media types: video, audio, image sequences, 3D models, documents, datasets</li>
+                    <li>Integration with ORCID, DOI, RAiD, and CRediT persistent identifier systems</li>
+                    <li>Portfolio and project-level aggregation of related outputs</li>
+                    <li>Flexible access controls and embargo functionality</li>
+                    <li>API access for institutional integration</li>
+                </ul>
+                <div class="deliverable-list">
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D7</div>
+                        <div class="deliverable-info">
+                            <h4>Platform Prototype (Alpha)</h4>
+                            <p>Working prototype of the Enact repository for testing with Pathfinder projects in co-design phase.</p>
+                            <span class="status-tag status-inprogress">In Progress</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D8</div>
+                        <div class="deliverable-info">
+                            <h4>Beta Platform Release</h4>
+                            <p>Full-featured beta platform incorporating Pathfinder feedback and community co-design outputs.</p>
+                            <span class="status-tag status-planned">Planned</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D9</div>
+                        <div class="deliverable-info">
+                            <h4>Public Platform Launch</h4>
+                            <p>Official public launch of the Enact repository, open for deposits from the practice research community.</p>
+                            <span class="status-tag status-planned">Planned</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WP4 -->
+    <section class="wp-section" id="wp4">
+        <div class="wp-inner">
+            <div class="wp-badge" style="background: #0d4a2e;">
+                <div class="wp-number">Work Package 4</div>
+                <div class="wp-title-short">Metadata &amp; Open Standards</div>
+                <div class="wp-lead">Led by: University of Leeds</div>
+            </div>
+            <div class="wp-content">
+                <h2>WP4: Metadata &amp; Open Standards</h2>
+                <p>WP4 ensures that practice research outputs are integrated with the global open research ecosystem through appropriate metadata standards and persistent identifier systems. This work positions arts and humanities practice as first-class participants in international research infrastructure.</p>
+                <p>Enact is actively engaged with DataCite, RAiD (Research Activity Identifier), CRediT (Contributor Roles Taxonomy), and other standards bodies to ensure that practice research can be described, cited, and discovered through established scholarly infrastructure.</p>
+                <h3>Standards Engagement</h3>
+                <ul>
+                    <li><strong>DataCite:</strong> Extending metadata schemas to accommodate creative and practice-based outputs</li>
+                    <li><strong>RAiD:</strong> Advocating for practice research project types within the Research Activity Identifier system</li>
+                    <li><strong>CRediT:</strong> Working to extend contributor roles to reflect creative practice contributions</li>
+                    <li><strong>ORCID:</strong> Supporting practice researchers in establishing and maintaining researcher identifiers</li>
+                    <li><strong>FAIR Principles:</strong> Applying Findability, Accessibility, Interoperability, and Reusability to creative outputs</li>
+                    <li><strong>CARE Principles:</strong> Integrating collective benefit, authority to control, responsibility, and ethics in community data management</li>
+                </ul>
+                <div class="deliverable-list">
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D10</div>
+                        <div class="deliverable-info">
+                            <h4>Metadata Schema for Practice Research</h4>
+                            <p>Published metadata schema designed specifically for practice research outputs, aligned with international standards.</p>
+                            <span class="status-tag status-inprogress">In Progress</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D11</div>
+                        <div class="deliverable-info">
+                            <h4>Standards Engagement Report</h4>
+                            <p>Documentation of engagement with standards bodies and recommendations for extending existing schemas.</p>
+                            <span class="status-tag status-planned">Planned</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D12</div>
+                        <div class="deliverable-info">
+                            <h4>Open Standards Advocacy Paper</h4>
+                            <p>Published position paper on the integration of practice research within open research infrastructure standards.</p>
+                            <span class="status-tag status-planned">Planned</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WP5 -->
+    <section class="wp-section" id="wp5">
+        <div class="wp-inner">
+            <div class="wp-badge">
+                <div class="wp-number">Work Package 5</div>
+                <div class="wp-title-short">Skills &amp; Training</div>
+                <div class="wp-lead">Led by: University of Leeds</div>
+            </div>
+            <div class="wp-content">
+                <h2>WP5: Skills and Training</h2>
+                <p>WP5 builds the human infrastructure needed to sustain practice research in an open research environment. It develops training materials, workshops, and resources targeted at practice researchers, research managers, librarians, and institutional leaders.</p>
+                <p>The training programme addresses the specific challenges that arise when applying open research principles to creative and practice-based outputs — from IP and licensing to digital preservation and FAIR data practice.</p>
+                <h3>Training Themes</h3>
+                <ul>
+                    <li><strong>Intellectual Property &amp; Licensing:</strong> Understanding rights in creative practice outputs; open licensing options</li>
+                    <li><strong>Digital Preservation:</strong> Formats, file management, and long-term sustainability for practice research documentation</li>
+                    <li><strong>Metadata &amp; Description:</strong> How to describe practice research outputs for discovery and citation</li>
+                    <li><strong>FAIR and CARE Principles:</strong> Applying open research principles to creative and community-facing work</li>
+                    <li><strong>Repository Use:</strong> Practical training on depositing and managing outputs in the Enact platform</li>
+                    <li><strong>Institutional Support:</strong> Guidance for research managers and librarians supporting practice researchers</li>
+                </ul>
+                <div class="deliverable-list">
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D13</div>
+                        <div class="deliverable-info">
+                            <h4>Training Needs Assessment</h4>
+                            <p>Comprehensive audit of skills gaps and training priorities across the practice research community.</p>
+                            <span class="status-tag status-complete">Complete</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D14</div>
+                        <div class="deliverable-info">
+                            <h4>Training Programme &amp; Materials</h4>
+                            <p>Suite of training resources covering all key themes, available for open reuse and adaptation.</p>
+                            <span class="status-tag status-inprogress">In Progress</span>
+                        </div>
+                    </div>
+                    <div class="deliverable-item">
+                        <div class="deliverable-num">D15</div>
+                        <div class="deliverable-info">
+                            <h4>Capacity Building Report</h4>
+                            <p>Evidence-based report on sector capacity, skills development outcomes, and recommendations for sustainability.</p>
+                            <span class="status-tag status-planned">Planned</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <a href="about.html">About</a>
+                <a href="team.html">Team</a>
+                <a href="community-engagement.html">Community Engagement</a>
+                <a href="project-deliverables.html">Project Deliverables</a>
+                <a href="news.html">News</a>
+                <a href="events.html">Events</a>
+            </div>
+            <div class="footer-section">
+                <h4>Work Packages</h4>
+                <a href="#wp1">WP1: Set-up &amp; Management</a>
+                <a href="#wp2">WP2: Community Leadership</a>
+                <a href="#wp3">WP3: Repository Build</a>
+                <a href="#wp4">WP4: Metadata &amp; Standards</a>
+                <a href="#wp5">WP5: Skills &amp; Training</a>
+            </div>
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <a href="about.html#express-interest">Express Your Interest</a>
+                <a href="about.html#get-in-touch">Contact Us</a>
+                <a href="community-engagement.html#pathfinders">Become a Pathfinder</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Enact Project. All rights reserved.</p>
+            <div class="logos">
+                <span class="logo-badge">AHRC Funded</span>
+                <span class="logo-badge">University of Westminster</span>
+                <span class="logo-badge">AH/Z000769/1</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
