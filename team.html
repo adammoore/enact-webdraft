@@ -42,11 +42,100 @@
         .header-content { max-width: 1400px; margin: 0 auto; padding: var(--space-md) var(--space-lg); display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--color-primary); display: flex; align-items: center; gap: var(--space-sm); border-bottom: none; }
         .logo:before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--color-accent); border-radius: 50%; }
-        nav { display: flex; gap: var(--space-lg); align-items: center; font-family: var(--font-ui); font-size: 0.9rem; font-weight: 500; flex-wrap: wrap; }
-        nav a { border: none; color: var(--color-dark); position: relative; }
-        nav a:after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
-        nav a:hover:after, nav a.active:after { transform: scaleX(1); transform-origin: left; }
-        nav a.active { color: var(--color-primary); }
+        /* ---- Navigation with CSS dropdowns (WordPress-compatible ul/li) ---- */
+        nav ul.nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: stretch;
+            font-family: var(--font-ui);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .nav-menu > .menu-item {
+            position: relative;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .nav-menu > .menu-item:hover,
+        .nav-menu > .menu-item.current-menu-item {
+            border-bottom-color: var(--color-accent);
+        }
+        .nav-menu > .menu-item > a {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.5rem 0.875rem;
+            color: var(--color-dark);
+            border-bottom: none;
+            white-space: nowrap;
+            height: 100%;
+        }
+        .nav-menu > .menu-item:hover > a,
+        .nav-menu > .menu-item.current-menu-item > a {
+            color: var(--color-primary);
+        }
+        /* Dropdown caret */
+        .menu-item-has-children > a::after {
+            content: '▾';
+            font-size: 0.65rem;
+            color: #aaa;
+            display: inline-block;
+            position: static;
+            transform: none;
+            background: none;
+            width: auto;
+            height: auto;
+            transition: transform 0.2s;
+        }
+        .menu-item-has-children:hover > a::after {
+            transform: rotate(180deg);
+        }
+        /* Dropdown panel */
+        .sub-menu {
+            position: absolute;
+            top: calc(100% + 2px);
+            left: 0;
+            background: white;
+            list-style: none;
+            min-width: 240px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-top: 3px solid var(--color-primary);
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+            z-index: 200;
+        }
+        .menu-item:hover > .sub-menu {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+        .sub-menu li {
+            border-bottom: 1px solid var(--color-border);
+        }
+        .sub-menu li:last-child {
+            border-bottom: none;
+        }
+        .sub-menu li a {
+            display: block;
+            padding: 0.65rem 1rem;
+            color: var(--color-dark);
+            border-bottom: none;
+            font-size: 0.82rem;
+            transition: background 0.15s, color 0.15s, padding-left 0.15s;
+        }
+        .sub-menu li a:hover {
+            background: var(--color-light);
+            color: var(--color-primary);
+            padding-left: 1.25rem;
+        }
+        @media (max-width: 900px) {
+            nav ul.nav-menu { flex-wrap: wrap; gap: 0; }
+            .sub-menu { position: static; box-shadow: none; border-top: none; border-left: 3px solid var(--color-primary); visibility: visible; opacity: 1; transform: none; display: none; }
+            .menu-item:hover > .sub-menu { display: block; }
+        }
 
         .page-hero { margin-top: 80px; padding: var(--space-2xl) var(--space-lg) var(--space-xl); background: linear-gradient(135deg, rgba(26,92,58,0.05) 0%, rgba(217,119,6,0.03) 100%); border-bottom: 3px solid var(--color-primary); }
         .page-hero .container { max-width: 1400px; margin: 0 auto; }
@@ -119,12 +208,55 @@
         <div class="header-content">
             <a href="index.html" class="logo">Enact</a>
             <nav>
-                <a href="about.html">About</a>
-                <a href="team.html" class="active">Team</a>
-                <a href="community-engagement.html">Community Engagement</a>
-                <a href="project-deliverables.html">Project Deliverables</a>
-                <a href="news.html">News</a>
-                <a href="events.html">Events</a>
+                <ul class="nav-menu">
+                    <li class="menu-item menu-item-has-children">
+                        <a href="about.html">About</a>
+                        <ul class="sub-menu">
+                            <li><a href="about.html#logo-fonts">Logo &amp; Fonts</a></li>
+                            <li><a href="about.html#funder-messages">Funder &amp; Key Messages</a></li>
+                            <li><a href="about.html#institutional-logos">Institutional Logos</a></li>
+                            <li><a href="about.html#project-board">Project Board</a></li>
+                            <li><a href="about.html#get-in-touch">Get in Touch</a></li>
+                            <li><a href="about.html#express-interest">Express Your Interest</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-has-children current-menu-item">
+                        <a href="team.html">Team</a>
+                        <ul class="sub-menu">
+                            <li><a href="team.html#executive-group">Enact Executive Group</a></li>
+                            <li><a href="team.html#delivery-team">Enact Delivery Team</a></li>
+                            <li><a href="team.html#technology-partner">Technology Partner</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-has-children">
+                        <a href="community-engagement.html">Community Engagement</a>
+                        <ul class="sub-menu">
+                            <li><a href="community-engagement.html#advisory-group">Community Advisory Group</a></li>
+                            <li><a href="community-engagement.html#pathfinders">Enact Pathfinders</a></li>
+                            <li><a href="community-engagement.html#audiences">Who Is Enact For?</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-has-children">
+                        <a href="project-deliverables.html">Project Deliverables</a>
+                        <ul class="sub-menu">
+                            <li><a href="wp1.html">WP1: Project Set-up &amp; Management</a></li>
+                            <li><a href="wp2.html">WP2: Community Leadership</a></li>
+                            <li><a href="wp3.html">WP3: Repository Build</a></li>
+                            <li><a href="wp4.html">WP4: Metadata &amp; Open Standards</a></li>
+                            <li><a href="wp5.html">WP5: Skills &amp; Training</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="news.html">News</a>
+                    </li>
+                    <li class="menu-item menu-item-has-children">
+                        <a href="events.html">Events</a>
+                        <ul class="sub-menu">
+                            <li><a href="events.html#monthly-dropins">Monthly Drop-ins</a></li>
+                            <li><a href="events.html#on-the-road">Enact on the Road</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </nav>
         </div>
     </header>

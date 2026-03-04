@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WP5: Skills and Training — building capacity for practice research in an open research environment.">
+    <meta name="theme-color" content="#1a5c3a">
+    <title>WP5: Skills &amp; Training | Enact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--color-primary:#1a5c3a;--color-accent:#d97706;--color-dark:#1f2937;--color-light:#f9fafb;--color-border:#e5e7eb;--font-display:'Playfair Display',serif;--font-body:'Source Serif Pro',serif;--font-ui:'Inter',sans-serif;--space-sm:1rem;--space-md:1.5rem;--space-lg:2rem;--space-xl:3rem;--space-2xl:4rem;--shadow-sm:0 1px 2px rgba(0,0,0,0.05);}
+        *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{font-family:var(--font-body);color:var(--color-dark);background:var(--color-light);line-height:1.6;}
+        h1,h2,h3,h4{font-family:var(--font-display);line-height:1.2;font-weight:800;margin-bottom:var(--space-md);}h1{font-size:2.75rem;}h2{font-size:1.75rem;color:var(--color-primary);}h3{font-size:1.1rem;}
+        p{margin-bottom:var(--space-md);max-width:70ch;}ul{margin-bottom:var(--space-md);padding-left:var(--space-lg);}li{margin-bottom:0.5rem;color:#555;}
+        a{color:var(--color-primary);text-decoration:none;transition:all 0.2s;border-bottom:2px solid transparent;}a:hover{border-bottom-color:var(--color-accent);color:var(--color-accent);}
+        header{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,0.96);border-bottom:1px solid var(--color-border);z-index:1000;backdrop-filter:blur(10px);}
+        .header-content{max-width:1400px;margin:0 auto;padding:var(--space-md) var(--space-lg);display:flex;justify-content:space-between;align-items:center;}
+        .logo{font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--color-primary);display:flex;align-items:center;gap:var(--space-sm);border-bottom:none;}.logo:before{content:'';display:inline-block;width:8px;height:8px;background:var(--color-accent);border-radius:50%;}
+        nav ul.nav-menu{display:flex;list-style:none;align-items:stretch;font-family:var(--font-ui);font-size:0.875rem;font-weight:500;}
+        .nav-menu>.menu-item{position:relative;border-bottom:2px solid transparent;transition:border-color 0.2s;}.nav-menu>.menu-item:hover,.nav-menu>.menu-item.current-menu-item{border-bottom-color:var(--color-accent);}
+        .nav-menu>.menu-item>a{display:flex;align-items:center;gap:0.3rem;padding:0.5rem 0.875rem;color:var(--color-dark);border-bottom:none;white-space:nowrap;height:100%;}.nav-menu>.menu-item:hover>a,.nav-menu>.menu-item.current-menu-item>a{color:var(--color-primary);}
+        .menu-item-has-children>a::after{content:'▾';font-size:0.65rem;color:#aaa;display:inline-block;transition:transform 0.2s;}.menu-item-has-children:hover>a::after{transform:rotate(180deg);}
+        .sub-menu{position:absolute;top:calc(100% + 2px);left:0;background:white;list-style:none;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,0.12);border-top:3px solid var(--color-primary);visibility:hidden;opacity:0;transform:translateY(-6px);transition:opacity 0.2s ease,transform 0.2s ease,visibility 0s linear 0.2s;z-index:200;}
+        .menu-item:hover>.sub-menu{visibility:visible;opacity:1;transform:translateY(0);transition-delay:0s;}.sub-menu li{border-bottom:1px solid var(--color-border);}.sub-menu li:last-child{border-bottom:none;}
+        .sub-menu li a{display:block;padding:0.65rem 1rem;color:var(--color-dark);border-bottom:none;font-size:0.82rem;transition:background 0.15s,color 0.15s,padding-left 0.15s;}.sub-menu li a:hover{background:var(--color-light);color:var(--color-primary);padding-left:1.25rem;}
+        @media(max-width:900px){nav ul.nav-menu{flex-wrap:wrap;}.sub-menu{position:static;box-shadow:none;border-top:none;border-left:3px solid var(--color-primary);visibility:visible;opacity:1;transform:none;display:none;}.menu-item:hover>.sub-menu{display:block;}}
+        .page-hero{margin-top:80px;padding:var(--space-2xl) var(--space-lg) var(--space-xl);background:linear-gradient(135deg,rgba(26,92,58,0.05) 0%,rgba(217,119,6,0.03) 100%);border-bottom:3px solid var(--color-primary);}
+        .page-hero .inner{max-width:1400px;margin:0 auto;}.breadcrumb{font-family:var(--font-ui);font-size:0.82rem;color:#999;margin-bottom:var(--space-md);}.breadcrumb a{color:var(--color-primary);border-bottom:none;}.breadcrumb a:hover{color:var(--color-accent);}
+        .wp-label{font-family:var(--font-ui);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--color-accent);margin-bottom:var(--space-sm);}
+        .content-wrap{display:grid;grid-template-columns:260px 1fr;gap:var(--space-2xl);padding:var(--space-2xl) var(--space-lg);max-width:1400px;margin:0 auto;align-items:start;}
+        .sidebar{position:sticky;top:100px;}.sidebar-card{background:white;padding:var(--space-lg);border-left:4px solid var(--color-primary);box-shadow:var(--shadow-sm);margin-bottom:var(--space-lg);}
+        .sidebar-card h4{font-family:var(--font-ui);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--color-accent);margin-bottom:var(--space-md);}
+        .sidebar-card ul{list-style:none;padding:0;margin:0;}.sidebar-card ul li{border-bottom:1px solid var(--color-border);}.sidebar-card ul li:last-child{border-bottom:none;}
+        .sidebar-card ul li a{display:block;padding:0.5rem 0;font-family:var(--font-ui);font-size:0.82rem;color:var(--color-dark);border-bottom:none;}.sidebar-card ul li a:hover{color:var(--color-primary);}.sidebar-card ul li a.current{color:var(--color-primary);font-weight:600;}
+        .meta-item{display:flex;flex-direction:column;margin-bottom:var(--space-sm);}.meta-label{font-family:var(--font-ui);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#999;margin-bottom:0.2rem;}.meta-value{font-family:var(--font-ui);font-size:0.88rem;color:var(--color-dark);}
+        .main-content h2{margin-top:0;}
+        .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-md);margin:var(--space-lg) 0;}
+        .theme-card{background:white;padding:var(--space-md);border-left:3px solid var(--color-primary);box-shadow:var(--shadow-sm);}
+        .theme-card h3{font-size:0.95rem;margin-bottom:0.4rem;color:var(--color-primary);}.theme-card p{font-size:0.85rem;color:#555;margin-bottom:0;max-width:none;}
+        .deliverable-list{margin-top:var(--space-lg);}.deliverable-item{display:flex;gap:var(--space-md);padding:var(--space-md) 0;border-bottom:1px solid var(--color-border);align-items:flex-start;}.deliverable-item:last-child{border-bottom:none;}
+        .deliverable-num{width:36px;height:36px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;color:white;font-family:var(--font-ui);font-weight:700;font-size:0.85rem;flex-shrink:0;}
+        .deliverable-info h4{font-size:0.95rem;margin-bottom:0.2rem;}.deliverable-info p{font-size:0.88rem;color:#666;margin-bottom:0.4rem;max-width:none;}
+        .status-tag{display:inline-block;padding:0.2rem 0.6rem;font-family:var(--font-ui);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+        .status-complete{background:rgba(34,197,94,0.1);color:#16a34a;}.status-inprogress{background:rgba(26,92,58,0.1);color:var(--color-primary);}.status-planned{background:rgba(217,119,6,0.1);color:var(--color-accent);}
+        .wp-nav-footer{display:flex;justify-content:space-between;gap:var(--space-lg);padding:var(--space-xl) 0;border-top:1px solid var(--color-border);margin-top:var(--space-xl);}
+        .wp-nav-footer a{font-family:var(--font-ui);font-size:0.9rem;font-weight:600;color:var(--color-primary);border-bottom:none;}.wp-nav-footer a:hover{color:var(--color-accent);}
+        .wp-nav-footer .prev:before{content:'← ';}
+        footer{background:var(--color-dark);color:white;padding:var(--space-xl) var(--space-lg);border-top:3px solid var(--color-accent);}
+        .footer-inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-lg);}
+        .logo-badge{background:rgba(255,255,255,0.1);padding:0.35rem var(--space-sm);font-size:0.78rem;font-weight:600;}.logos{display:flex;gap:var(--space-sm);flex-wrap:wrap;}
+        @media(max-width:900px){.content-wrap{grid-template-columns:1fr;}.sidebar{position:static;}}
+        @media(max-width:768px){h1{font-size:2rem;}.header-content{flex-wrap:wrap;gap:var(--space-sm);}nav ul.nav-menu{width:100%;}.content-wrap{padding:var(--space-xl) var(--space-sm);}}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <a href="index.html" class="logo">Enact</a>
+        <nav><ul class="nav-menu">
+            <li class="menu-item menu-item-has-children"><a href="about.html">About</a><ul class="sub-menu"><li><a href="about.html#logo-fonts">Logo &amp; Fonts</a></li><li><a href="about.html#funder-messages">Funder &amp; Key Messages</a></li><li><a href="about.html#institutional-logos">Institutional Logos</a></li><li><a href="about.html#project-board">Project Board</a></li><li><a href="about.html#get-in-touch">Get in Touch</a></li><li><a href="about.html#express-interest">Express Your Interest</a></li></ul></li>
+            <li class="menu-item menu-item-has-children"><a href="team.html">Team</a><ul class="sub-menu"><li><a href="team.html#executive-group">Enact Executive Group</a></li><li><a href="team.html#delivery-team">Enact Delivery Team</a></li><li><a href="team.html#technology-partner">Technology Partner</a></li></ul></li>
+            <li class="menu-item menu-item-has-children"><a href="community-engagement.html">Community Engagement</a><ul class="sub-menu"><li><a href="community-engagement.html#advisory-group">Community Advisory Group</a></li><li><a href="community-engagement.html#pathfinders">Enact Pathfinders</a></li><li><a href="community-engagement.html#audiences">Who Is Enact For?</a></li></ul></li>
+            <li class="menu-item menu-item-has-children current-menu-item"><a href="project-deliverables.html">Project Deliverables</a><ul class="sub-menu"><li><a href="wp1.html">WP1: Project Set-up &amp; Management</a></li><li><a href="wp2.html">WP2: Community Leadership</a></li><li><a href="wp3.html">WP3: Repository Build</a></li><li><a href="wp4.html">WP4: Metadata &amp; Open Standards</a></li><li><a href="wp5.html" class="current">WP5: Skills &amp; Training</a></li></ul></li>
+            <li class="menu-item"><a href="news.html">News</a></li>
+            <li class="menu-item menu-item-has-children"><a href="events.html">Events</a><ul class="sub-menu"><li><a href="events.html#monthly-dropins">Monthly Drop-ins</a></li><li><a href="events.html#on-the-road">Enact on the Road</a></li></ul></li>
+        </ul></nav>
+    </div>
+</header>
+<div class="page-hero">
+    <div class="inner">
+        <div class="breadcrumb"><a href="index.html">Home</a> / <a href="project-deliverables.html">Project Deliverables</a> / WP5</div>
+        <div class="wp-label">Work Package 5</div>
+        <h1>Skills &amp; Training</h1>
+        <p>Building the human infrastructure needed to sustain practice research in an open research environment — training, resources, and lasting community capacity.</p>
+    </div>
+</div>
+<div class="content-wrap">
+    <aside class="sidebar">
+        <div class="sidebar-card">
+            <h4>Work Packages</h4>
+            <ul>
+                <li><a href="wp1.html">WP1: Set-up &amp; Management</a></li>
+                <li><a href="wp2.html">WP2: Community Leadership</a></li>
+                <li><a href="wp3.html">WP3: Repository Build</a></li>
+                <li><a href="wp4.html">WP4: Metadata &amp; Standards</a></li>
+                <li><a href="wp5.html" class="current">WP5: Skills &amp; Training</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-card">
+            <h4>WP5 Details</h4>
+            <div class="meta-item"><span class="meta-label">Lead Institution</span><span class="meta-value">University of Leeds</span></div>
+            <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">2025–2028</span></div>
+            <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value" style="color:var(--color-primary);font-weight:600;">Active</span></div>
+        </div>
+        <div class="sidebar-card">
+            <h4>Get Involved</h4>
+            <p style="font-size:0.85rem;color:#555;margin-bottom:var(--space-sm);">Interested in training resources or contributing your expertise?</p>
+            <a href="about.html#get-in-touch" style="font-family:var(--font-ui);font-size:0.85rem;font-weight:600;color:var(--color-primary);border-bottom:2px solid currentColor;">Contact us →</a>
+        </div>
+    </aside>
+    <main class="main-content">
+        <h2>Overview</h2>
+        <p>WP5 builds the human infrastructure needed to sustain practice research in an open research environment. It develops training materials, workshops, and resources targeted at practice researchers, research managers, librarians, and institutional leaders.</p>
+        <p>The training programme addresses the specific challenges that arise when applying open research principles to creative and practice-based outputs — from IP and licensing to digital preservation and FAIR data practice.</p>
+
+        <h2>Training Themes</h2>
+        <div class="theme-grid">
+            <div class="theme-card">
+                <h3>IP &amp; Licensing</h3>
+                <p>Understanding rights in creative practice outputs; options for open licensing while protecting artistic integrity.</p>
+            </div>
+            <div class="theme-card">
+                <h3>Digital Preservation</h3>
+                <p>File formats, long-term storage strategies, and sustainability planning for practice research documentation.</p>
+            </div>
+            <div class="theme-card">
+                <h3>Metadata &amp; Description</h3>
+                <p>How to describe practice research outputs for discovery, citation, and long-term intelligibility.</p>
+            </div>
+            <div class="theme-card">
+                <h3>FAIR &amp; CARE Principles</h3>
+                <p>Applying open research principles to creative and community-facing work, including ethics and consent.</p>
+            </div>
+            <div class="theme-card">
+                <h3>Repository Use</h3>
+                <p>Practical training on depositing, managing, and sharing outputs in the Enact platform.</p>
+            </div>
+            <div class="theme-card">
+                <h3>Institutional Support</h3>
+                <p>Guidance for research managers and librarians supporting practice researchers with open research requirements.</p>
+            </div>
+        </div>
+
+        <h2>Key Activities</h2>
+        <ul>
+            <li>Conducting a sector-wide training needs assessment with practice researchers, managers, and librarians</li>
+            <li>Developing an open, reusable suite of training resources across all key themes</li>
+            <li>Delivering workshops at Pathfinder institutions and regional Enact events</li>
+            <li>Creating self-guided online resources available to the whole community</li>
+            <li>Building a network of trained advocates within practice research communities</li>
+        </ul>
+
+        <h2>Deliverables</h2>
+        <div class="deliverable-list">
+            <div class="deliverable-item">
+                <div class="deliverable-num">D13</div>
+                <div class="deliverable-info">
+                    <h4>Training Needs Assessment</h4>
+                    <p>Comprehensive audit of skills gaps and training priorities across the practice research community, informing all subsequent resource development.</p>
+                    <span class="status-tag status-complete">Complete</span>
+                </div>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-num">D14</div>
+                <div class="deliverable-info">
+                    <h4>Training Programme &amp; Materials</h4>
+                    <p>Full suite of training resources covering all key themes, openly licensed and available for reuse and adaptation by the community.</p>
+                    <span class="status-tag status-inprogress">In Progress</span>
+                </div>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-num">D15</div>
+                <div class="deliverable-info">
+                    <h4>Capacity Building Report</h4>
+                    <p>Evidence-based report on sector capacity, skills development outcomes, and recommendations for sustaining expertise beyond the project period.</p>
+                    <span class="status-tag status-planned">Planned — 2028</span>
+                </div>
+            </div>
+        </div>
+        <div class="wp-nav-footer">
+            <a href="wp4.html" class="prev">WP4: Metadata &amp; Standards</a>
+            <a href="project-deliverables.html" style="font-family:var(--font-ui);font-size:0.9rem;font-weight:600;color:var(--color-primary);border-bottom:none;">All Work Packages →</a>
+        </div>
+    </main>
+</div>
+<footer><div class="footer-inner"><p style="color:#999;font-size:0.85rem;">&copy; 2025 Enact Project. AHRC Grant AH/Z000769/1.</p><div class="logos"><span class="logo-badge">AHRC Funded</span><span class="logo-badge">University of Westminster</span></div></div></footer>
+</body>
+</html>

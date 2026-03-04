@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WP2: Community Leadership and Engagement — co-design, pathfinders, and community advisory group.">
+    <meta name="theme-color" content="#1a5c3a">
+    <title>WP2: Community Leadership &amp; Engagement | Enact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--color-primary:#1a5c3a;--color-accent:#d97706;--color-dark:#1f2937;--color-light:#f9fafb;--color-border:#e5e7eb;--font-display:'Playfair Display',serif;--font-body:'Source Serif Pro',serif;--font-ui:'Inter',sans-serif;--space-sm:1rem;--space-md:1.5rem;--space-lg:2rem;--space-xl:3rem;--space-2xl:4rem;--shadow-sm:0 1px 2px rgba(0,0,0,0.05);--shadow-md:0 4px 6px rgba(0,0,0,0.1);--shadow-lg:0 10px 15px rgba(0,0,0,0.1);}
+        *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{font-family:var(--font-body);color:var(--color-dark);background:var(--color-light);line-height:1.6;}
+        h1,h2,h3,h4{font-family:var(--font-display);line-height:1.2;font-weight:800;margin-bottom:var(--space-md);}h1{font-size:2.75rem;}h2{font-size:1.75rem;color:var(--color-primary);}h3{font-size:1.25rem;}
+        p{margin-bottom:var(--space-md);max-width:70ch;}ul{margin-bottom:var(--space-md);padding-left:var(--space-lg);}li{margin-bottom:0.5rem;color:#555;}
+        a{color:var(--color-primary);text-decoration:none;transition:all 0.2s;border-bottom:2px solid transparent;}a:hover{border-bottom-color:var(--color-accent);color:var(--color-accent);}
+        header{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,0.96);border-bottom:1px solid var(--color-border);z-index:1000;backdrop-filter:blur(10px);}
+        .header-content{max-width:1400px;margin:0 auto;padding:var(--space-md) var(--space-lg);display:flex;justify-content:space-between;align-items:center;}
+        .logo{font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--color-primary);display:flex;align-items:center;gap:var(--space-sm);border-bottom:none;}
+        .logo:before{content:'';display:inline-block;width:8px;height:8px;background:var(--color-accent);border-radius:50%;}
+        nav ul.nav-menu{display:flex;list-style:none;align-items:stretch;font-family:var(--font-ui);font-size:0.875rem;font-weight:500;}
+        .nav-menu>.menu-item{position:relative;border-bottom:2px solid transparent;transition:border-color 0.2s;}
+        .nav-menu>.menu-item:hover,.nav-menu>.menu-item.current-menu-item{border-bottom-color:var(--color-accent);}
+        .nav-menu>.menu-item>a{display:flex;align-items:center;gap:0.3rem;padding:0.5rem 0.875rem;color:var(--color-dark);border-bottom:none;white-space:nowrap;height:100%;}
+        .nav-menu>.menu-item:hover>a,.nav-menu>.menu-item.current-menu-item>a{color:var(--color-primary);}
+        .menu-item-has-children>a::after{content:'▾';font-size:0.65rem;color:#aaa;display:inline-block;transition:transform 0.2s;}
+        .menu-item-has-children:hover>a::after{transform:rotate(180deg);}
+        .sub-menu{position:absolute;top:calc(100% + 2px);left:0;background:white;list-style:none;min-width:240px;box-shadow:0 8px 24px rgba(0,0,0,0.12);border-top:3px solid var(--color-primary);visibility:hidden;opacity:0;transform:translateY(-6px);transition:opacity 0.2s ease,transform 0.2s ease,visibility 0s linear 0.2s;z-index:200;}
+        .menu-item:hover>.sub-menu{visibility:visible;opacity:1;transform:translateY(0);transition-delay:0s;}
+        .sub-menu li{border-bottom:1px solid var(--color-border);}.sub-menu li:last-child{border-bottom:none;}
+        .sub-menu li a{display:block;padding:0.65rem 1rem;color:var(--color-dark);border-bottom:none;font-size:0.82rem;transition:background 0.15s,color 0.15s,padding-left 0.15s;}
+        .sub-menu li a:hover{background:var(--color-light);color:var(--color-primary);padding-left:1.25rem;}
+        @media(max-width:900px){nav ul.nav-menu{flex-wrap:wrap;}.sub-menu{position:static;box-shadow:none;border-top:none;border-left:3px solid var(--color-primary);visibility:visible;opacity:1;transform:none;display:none;}.menu-item:hover>.sub-menu{display:block;}}
+        .page-hero{margin-top:80px;padding:var(--space-2xl) var(--space-lg) var(--space-xl);background:linear-gradient(135deg,rgba(26,92,58,0.05) 0%,rgba(217,119,6,0.03) 100%);border-bottom:3px solid var(--color-primary);}
+        .page-hero .inner{max-width:1400px;margin:0 auto;}
+        .breadcrumb{font-family:var(--font-ui);font-size:0.82rem;color:#999;margin-bottom:var(--space-md);}.breadcrumb a{color:var(--color-primary);border-bottom:none;}.breadcrumb a:hover{color:var(--color-accent);}
+        .wp-label{font-family:var(--font-ui);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--color-accent);margin-bottom:var(--space-sm);}
+        .content-wrap{display:grid;grid-template-columns:260px 1fr;gap:var(--space-2xl);padding:var(--space-2xl) var(--space-lg);max-width:1400px;margin:0 auto;align-items:start;}
+        .sidebar{position:sticky;top:100px;}
+        .sidebar-card{background:white;padding:var(--space-lg);border-left:4px solid var(--color-primary);box-shadow:var(--shadow-sm);margin-bottom:var(--space-lg);}
+        .sidebar-card h4{font-family:var(--font-ui);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--color-accent);margin-bottom:var(--space-md);}
+        .sidebar-card ul{list-style:none;padding:0;margin:0;}.sidebar-card ul li{border-bottom:1px solid var(--color-border);}.sidebar-card ul li:last-child{border-bottom:none;}
+        .sidebar-card ul li a{display:block;padding:0.5rem 0;font-family:var(--font-ui);font-size:0.82rem;color:var(--color-dark);border-bottom:none;}.sidebar-card ul li a:hover{color:var(--color-primary);}.sidebar-card ul li a.current{color:var(--color-primary);font-weight:600;}
+        .meta-item{display:flex;flex-direction:column;margin-bottom:var(--space-sm);}.meta-label{font-family:var(--font-ui);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#999;margin-bottom:0.2rem;}.meta-value{font-family:var(--font-ui);font-size:0.88rem;color:var(--color-dark);}
+        .main-content h2{margin-top:0;}
+        .deliverable-list{margin-top:var(--space-lg);}.deliverable-item{display:flex;gap:var(--space-md);padding:var(--space-md) 0;border-bottom:1px solid var(--color-border);align-items:flex-start;}.deliverable-item:last-child{border-bottom:none;}
+        .deliverable-num{width:36px;height:36px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;color:white;font-family:var(--font-ui);font-weight:700;font-size:0.85rem;flex-shrink:0;}
+        .deliverable-info h4{font-size:0.95rem;margin-bottom:0.2rem;}.deliverable-info p{font-size:0.88rem;color:#666;margin-bottom:0.4rem;max-width:none;}
+        .status-tag{display:inline-block;padding:0.2rem 0.6rem;font-family:var(--font-ui);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+        .status-complete{background:rgba(34,197,94,0.1);color:#16a34a;}.status-inprogress{background:rgba(26,92,58,0.1);color:var(--color-primary);}.status-planned{background:rgba(217,119,6,0.1);color:var(--color-accent);}
+        .wp-nav-footer{display:flex;justify-content:space-between;gap:var(--space-lg);padding:var(--space-xl) 0;border-top:1px solid var(--color-border);margin-top:var(--space-xl);}
+        .wp-nav-footer a{font-family:var(--font-ui);font-size:0.9rem;font-weight:600;color:var(--color-primary);border-bottom:none;}.wp-nav-footer a:hover{color:var(--color-accent);}
+        .wp-nav-footer .prev:before{content:'← ';}.wp-nav-footer .next:after{content:' →';}
+        footer{background:var(--color-dark);color:white;padding:var(--space-xl) var(--space-lg);border-top:3px solid var(--color-accent);}
+        .footer-inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-lg);}
+        .footer-inner a{color:#ccc;font-family:var(--font-ui);font-size:0.85rem;border-bottom:none;}
+        .logo-badge{background:rgba(255,255,255,0.1);padding:0.35rem var(--space-sm);font-size:0.78rem;font-weight:600;}.logos{display:flex;gap:var(--space-sm);flex-wrap:wrap;}
+        @media(max-width:900px){.content-wrap{grid-template-columns:1fr;}.sidebar{position:static;}}
+        @media(max-width:768px){h1{font-size:2rem;}.header-content{flex-wrap:wrap;gap:var(--space-sm);}nav ul.nav-menu{width:100%;}.content-wrap{padding:var(--space-xl) var(--space-sm);}}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <a href="index.html" class="logo">Enact</a>
+        <nav>
+            <ul class="nav-menu">
+                <li class="menu-item menu-item-has-children"><a href="about.html">About</a><ul class="sub-menu"><li><a href="about.html#logo-fonts">Logo &amp; Fonts</a></li><li><a href="about.html#funder-messages">Funder &amp; Key Messages</a></li><li><a href="about.html#institutional-logos">Institutional Logos</a></li><li><a href="about.html#project-board">Project Board</a></li><li><a href="about.html#get-in-touch">Get in Touch</a></li><li><a href="about.html#express-interest">Express Your Interest</a></li></ul></li>
+                <li class="menu-item menu-item-has-children"><a href="team.html">Team</a><ul class="sub-menu"><li><a href="team.html#executive-group">Enact Executive Group</a></li><li><a href="team.html#delivery-team">Enact Delivery Team</a></li><li><a href="team.html#technology-partner">Technology Partner</a></li></ul></li>
+                <li class="menu-item menu-item-has-children"><a href="community-engagement.html">Community Engagement</a><ul class="sub-menu"><li><a href="community-engagement.html#advisory-group">Community Advisory Group</a></li><li><a href="community-engagement.html#pathfinders">Enact Pathfinders</a></li><li><a href="community-engagement.html#audiences">Who Is Enact For?</a></li></ul></li>
+                <li class="menu-item menu-item-has-children current-menu-item"><a href="project-deliverables.html">Project Deliverables</a><ul class="sub-menu"><li><a href="wp1.html">WP1: Project Set-up &amp; Management</a></li><li><a href="wp2.html" class="current">WP2: Community Leadership</a></li><li><a href="wp3.html">WP3: Repository Build</a></li><li><a href="wp4.html">WP4: Metadata &amp; Open Standards</a></li><li><a href="wp5.html">WP5: Skills &amp; Training</a></li></ul></li>
+                <li class="menu-item"><a href="news.html">News</a></li>
+                <li class="menu-item menu-item-has-children"><a href="events.html">Events</a><ul class="sub-menu"><li><a href="events.html#monthly-dropins">Monthly Drop-ins</a></li><li><a href="events.html#on-the-road">Enact on the Road</a></li></ul></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="page-hero">
+    <div class="inner">
+        <div class="breadcrumb"><a href="index.html">Home</a> / <a href="project-deliverables.html">Project Deliverables</a> / WP2</div>
+        <div class="wp-label">Work Package 2</div>
+        <h1>Community Leadership &amp; Engagement</h1>
+        <p>Co-designing Enact with the practice research community through pathfinder partnerships, advisory structures, and inclusive engagement.</p>
+    </div>
+</div>
+<div class="content-wrap">
+    <aside class="sidebar">
+        <div class="sidebar-card">
+            <h4>Work Packages</h4>
+            <ul>
+                <li><a href="wp1.html">WP1: Set-up &amp; Management</a></li>
+                <li><a href="wp2.html" class="current">WP2: Community Leadership</a></li>
+                <li><a href="wp3.html">WP3: Repository Build</a></li>
+                <li><a href="wp4.html">WP4: Metadata &amp; Standards</a></li>
+                <li><a href="wp5.html">WP5: Skills &amp; Training</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-card">
+            <h4>WP2 Details</h4>
+            <div class="meta-item"><span class="meta-label">Lead Institutions</span><span class="meta-value">QMUL &amp; University of Westminster</span></div>
+            <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">Throughout project (2025–2028)</span></div>
+            <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value" style="color:var(--color-primary);font-weight:600;">Active</span></div>
+        </div>
+        <div class="sidebar-card">
+            <h4>Related Pages</h4>
+            <ul>
+                <li><a href="community-engagement.html#advisory-group">Community Advisory Group</a></li>
+                <li><a href="community-engagement.html#pathfinders">Enact Pathfinders</a></li>
+                <li><a href="events.html#on-the-road">Enact on the Road</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main class="main-content">
+        <h2>Overview</h2>
+        <p>WP2 is the heart of Enact's co-design approach. Through structured engagement with the practice research community, it gathers the knowledge, priorities, and real-world use cases needed to build infrastructure that genuinely serves researchers' needs.</p>
+        <p>This work package operates in close partnership with the Community Advisory Group (CAG) and Pathfinder projects, and its outputs feed directly into the technical and standards work of WP3 and WP4.</p>
+
+        <h2>Key Activities</h2>
+        <ul>
+            <li>Establishing and convening the Community Advisory Group with representatives from diverse disciplines</li>
+            <li>Recruiting and supporting Pathfinder projects across practice research areas</li>
+            <li>Co-design workshops with practice research communities to gather requirements</li>
+            <li>Community needs assessment — understanding what researchers actually need from infrastructure</li>
+            <li>Producing discipline-specific case studies and use cases for platform development</li>
+            <li>Regional engagement through Enact 'on the road' events across the UK</li>
+            <li>Developing inclusive frameworks for underrepresented practice areas and career stages</li>
+        </ul>
+
+        <h2>Community Advisory Group</h2>
+        <p>The CAG brings together practice researchers, research managers, librarians, and standards specialists to provide strategic oversight and community accountability. Members meet quarterly and act as critical friends to the project throughout its lifetime.</p>
+        <p><a href="community-engagement.html#advisory-group">Meet the Community Advisory Group →</a></p>
+
+        <h2>Pathfinder Projects</h2>
+        <p>Pathfinders are partner institutions and research groups working directly with the Enact team to co-design and test the platform. They bring real-world use cases from performance, visual art, music, design, dance, and more.</p>
+        <p><a href="community-engagement.html#pathfinders">Find out about Pathfinder projects →</a></p>
+
+        <h2>Deliverables</h2>
+        <div class="deliverable-list">
+            <div class="deliverable-item">
+                <div class="deliverable-num">D4</div>
+                <div class="deliverable-info">
+                    <h4>Community Advisory Group Established</h4>
+                    <p>CAG with members from diverse practice research disciplines, institutions, and career stages convened and operational.</p>
+                    <span class="status-tag status-complete">Complete</span>
+                </div>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-num">D5</div>
+                <div class="deliverable-info">
+                    <h4>Pathfinder Cohort Recruited</h4>
+                    <p>Six or more pathfinder projects representing the range of practice research disciplines and institution types.</p>
+                    <span class="status-tag status-inprogress">In Progress</span>
+                </div>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-num">D6</div>
+                <div class="deliverable-info">
+                    <h4>Community Needs Report</h4>
+                    <p>Published synthesis of community requirements, priorities, and use cases for practice research infrastructure.</p>
+                    <span class="status-tag status-planned">Planned</span>
+                </div>
+            </div>
+        </div>
+        <div class="wp-nav-footer">
+            <a href="wp1.html" class="prev">WP1: Set-up &amp; Management</a>
+            <a href="wp3.html" class="next">WP3: Repository Build</a>
+        </div>
+    </main>
+</div>
+<footer>
+    <div class="footer-inner">
+        <p style="color:#999;font-size:0.85rem;">&copy; 2025 Enact Project. AHRC Grant AH/Z000769/1.</p>
+        <div class="logos"><span class="logo-badge">AHRC Funded</span><span class="logo-badge">University of Westminster</span></div>
+    </div>
+</footer>
+</body>
+</html>
