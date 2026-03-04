@@ -301,9 +301,66 @@
         }
         
         .hero-graphic {
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect fill="%231a5c3a" opacity="0.1" width="400" height="400"/><circle cx="100" cy="100" r="60" fill="%23d97706" opacity="0.2"/><path d="M150,200 Q200,250 250,200" stroke="%231a5c3a" stroke-width="3" fill="none" opacity="0.5"/><rect x="50" y="250" width="100" height="100" fill="%231a5c3a" opacity="0.1" transform="rotate(15 100 300)"/></svg>') no-repeat center;
-            background-size: contain;
-            animation: float 3s ease-in-out infinite;
+            background: var(--color-primary);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            padding: var(--space-2xl);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-graphic::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 15%, rgba(217,119,6,0.2) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .hero-pullquote {
+            position: relative;
+            z-index: 1;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-pullquote::before {
+            content: '\201C';
+            font-family: var(--font-display);
+            font-size: 8rem;
+            line-height: 0.7;
+            color: var(--color-accent);
+            opacity: 0.45;
+            display: block;
+            margin-bottom: -0.25rem;
+            font-weight: 800;
+        }
+
+        .hero-pullquote p {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            line-height: 1.65;
+            color: white;
+            font-style: italic;
+            font-weight: 400;
+            max-width: none;
+            margin-bottom: var(--space-md);
+        }
+
+        .hero-pullquote cite {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-accent);
+            font-style: normal;
+            display: block;
+            padding-top: var(--space-sm);
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
         
         /* ============================================================
@@ -588,21 +645,33 @@
            Responsive Design: Mobile-first approach
            Ensures usability across all device sizes
            ============================================================ */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 2.75rem; }
+            .hero-pullquote p { font-size: 1.1rem; }
+            .hero-content { gap: var(--space-lg); }
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 1.75rem; }
-            
+
             nav {
                 gap: var(--space-md);
             }
-            
+
             .hero-content {
                 grid-template-columns: 1fr;
             }
-            
+
             .hero-graphic {
-                display: none;
+                padding: var(--space-xl);
             }
+
+            .hero-pullquote::before {
+                font-size: 5rem;
+            }
+
+            .hero-pullquote p { font-size: 1rem; }
             
             header {
                 padding: var(--space-md);
@@ -715,14 +784,18 @@
             <div>
                 <p style="font-family:var(--font-ui); font-size:0.9rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--color-accent); margin-bottom:var(--space-sm);">Enact</p>
                 <h1>A repository built for practice research</h1>
-                <p style="font-size:1.15rem; font-style:italic; color:#444; margin-bottom:var(--space-lg); max-width:55ch;">"Opening the domain of research to the wealth of under-represented ways of knowing that emerge in practice."</p>
                 <p>Enact is a new national repository and community for practice-based research — built by researchers, for researchers, with funding from the Arts and Humanities Research Council.</p>
                 <div style="display:flex; gap:var(--space-md); flex-wrap:wrap; margin-top:var(--space-lg);">
                     <a href="#get-involved" class="cta-button">Get Involved</a>
                     <a href="about.html" class="cta-button" style="background:white; color:var(--color-primary); border-color:var(--color-primary);">Find Out More</a>
                 </div>
             </div>
-            <div class="hero-graphic"></div>
+            <div class="hero-graphic">
+                <blockquote class="hero-pullquote">
+                    <p>Opening the domain of research to the wealth of under-represented ways of knowing that emerge in practice.</p>
+                    <cite>PRAG-UK Report on Practice Research</cite>
+                </blockquote>
+            </div>
         </div>
     </section>
 
